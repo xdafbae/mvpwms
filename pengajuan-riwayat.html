@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PT. Dian Pilar Utama | Riwayat Pengajuan</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>tailwind.config={theme:{extend:{colors:{"primary":"#9c3f00","primary-container":"#ff7a2f","on-primary":"#fff0ea","on-primary-container":"#401500","surface":"#f5f7f9","surface-container-lowest":"#ffffff","surface-container-low":"#eef1f3","surface-container":"#e5e9eb","surface-container-high":"#dfe3e6","surface-container-highest":"#d9dde0","surface-bright":"#f5f7f9","on-surface":"#2c2f31","on-surface-variant":"#595c5e","outline":"#747779","outline-variant":"#abadaf","error":"#b02500","error-container":"#f95630"},fontFamily:{sans:["Plus Jakarta Sans","sans-serif"]}}}}</script>
+  <style>
+    body{font-family:'Plus Jakarta Sans',sans-serif;}
+    .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+    .bg-orange-600{background:linear-gradient(135deg,#9c3f00 0%,#ff7a2f 100%);}
+    .sidebar-link{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:14px;font-weight:500;color:#595c5e;transition:all 0.2s;}
+    .sidebar-link:hover{color:#9c3f00;background:#fff7f0;transform:translateX(4px);}
+    .sidebar-active{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:14px;font-weight:700;background:#fff;box-shadow:0 1px 4px rgba(44,47,49,0.08);color:#9c3f00;}
+    @keyframes fade-up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    .anim{opacity:0;animation:fade-up 0.5s ease forwards;}
+    .anim-1{animation-delay:.05s}.anim-2{animation-delay:.1s}.anim-3{animation-delay:.15s}
+    .pulse{animation:p 2s infinite;}@keyframes p{0%,100%{opacity:1}50%{opacity:.5}}
+    input,select{outline:none;}
+  </style>
+</head>
+<body class="bg-surface text-on-surface flex">
+  <aside class="h-screen w-64 fixed left-0 top-0 bg-slate-50 flex flex-col p-5 z-40">
+    <a href="office-select.html" class="flex items-center space-x-3 mb-8 px-2"><div class="w-10 h-10 rounded-xl bg-orange-600 flex items-center justify-center shadow-lg"><span class="material-symbols-outlined text-white">inventory_2</span></div><div><h2 class="text-on-surface font-extrabold text-sm">PT. Dian Pilar Utama</h2><p class="text-on-surface-variant text-[10px] uppercase tracking-widest font-bold">Kantor Pusat</p></div></a>
+    <div class="mb-5 px-2"><div class="flex items-center space-x-2 px-4 py-2.5 bg-orange-50 rounded-xl border border-orange-100"><span class="w-2 h-2 rounded-full bg-green-500 pulse"></span><span class="text-xs font-bold text-primary flex-1">KTR1 — Kantor Pusat</span><span class="material-symbols-outlined text-primary text-sm">unfold_more</span></div></div>
+    <nav class="flex-1 space-y-1">
+      <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest px-4 mb-2">Menu Utama</p>
+      <a href="dashboard.html" class="sidebar-link"><span class="material-symbols-outlined">dashboard</span><span>Dashboard</span></a>
+      <a href="master-barang.html" class="sidebar-link"><span class="material-symbols-outlined">inventory_2</span><span>Master Barang</span></a>
+      <a href="master-merk.html" class="sidebar-link"><span class="material-symbols-outlined">database</span><span>Master Data</span></a>
+      <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest px-4 mb-2 mt-5">Pengajuan</p>
+      <a href="pengajuan-buat.html" class="sidebar-link"><span class="material-symbols-outlined">add_circle</span><span>Buat Pengajuan</span></a>
+      <a href="pengajuan-riwayat.html" class="sidebar-active"><span class="material-symbols-outlined">history</span><span>Riwayat Pengajuan</span></a>
+      <a href="approval-inbox.html" class="sidebar-link"><span class="material-symbols-outlined">inbox</span><span>Inbox Pimpinan</span><span class="ml-auto bg-error text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span></a>
+      <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest px-4 mb-2 mt-5">Operasional</p>
+      <a href="gudang-inbox.html" class="sidebar-link"><span class="material-symbols-outlined">warehouse</span><span>Eksekusi Gudang</span></a>
+      <a href="stok-dashboard.html" class="sidebar-link"><span class="material-symbols-outlined">bar_chart</span><span>Stok Real-Time</span></a>
+      <a href="target-dashboard.html" class="sidebar-link"><span class="material-symbols-outlined">track_changes</span><span>Target</span></a>
+    </nav>
+    <div class="pt-4 border-t border-slate-200/60 space-y-1">
+      <a href="#" class="sidebar-link"><span class="material-symbols-outlined">help</span><span>Bantuan</span></a>
+      <a href="index.html" class="sidebar-link"><span class="material-symbols-outlined">logout</span><span>Keluar</span></a>
+    </div>
+  </aside>
+
+  <main class="pl-64 min-h-screen flex-1">
+    <header class="sticky top-0 z-30 bg-white/80 backdrop-blur-xl shadow-[0px_4px_24px_rgba(44,47,49,0.06)] flex justify-between items-center px-8 h-16">
+      <nav class="flex items-center space-x-2 text-xs text-on-surface-variant font-medium">
+        <span>Pengajuan</span><span class="material-symbols-outlined text-sm">chevron_right</span><span class="text-on-surface font-bold">Riwayat Pengajuan</span>
+      </nav>
+      <div class="flex items-center space-x-3">
+        <button class="relative p-2 hover:bg-surface-container rounded-full transition-all"><span class="material-symbols-outlined text-on-surface-variant">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error"></span></button>
+        <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-bold">AN</div>
+      </div>
+    </header>
+
+    <div class="p-8 max-w-7xl mx-auto">
+      <div class="flex justify-between items-end mb-10 anim anim-1">
+        <div>
+          <div class="flex items-center space-x-2 mb-2"><span class="text-on-surface-variant font-medium text-sm">Pengajuan Barang</span></div>
+          <h1 class="text-2xl font-bold tracking-tight text-on-surface">Riwayat Pengajuan</h1>
+          <p class="text-on-surface-variant mt-1">Semua pengajuan yang pernah kamu buat.</p>
+        </div>
+        <a href="pengajuan-buat.html" class="px-6 py-3 bg-slate-900 text-white rounded-lg font-medium hover:bg-slate-800 transition-colors shadow-sm flex items-center space-x-2 text-sm">
+          <span class="material-symbols-outlined text-xl">add</span><span>Buat Pengajuan</span>
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-8 anim anim-1">
+        <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm text-center">
+          <h3 class="text-2xl font-extrabold text-on-surface">42</h3>
+          <p class="text-xs text-on-surface-variant font-bold mt-1">Total Pengajuan</p>
+        </div>
+        <div class="bg-yellow-50 rounded-xl p-5 text-center">
+          <h3 class="text-2xl font-extrabold text-yellow-700">3</h3>
+          <p class="text-xs text-yellow-700 font-bold mt-1">Menunggu</p>
+        </div>
+        <div class="bg-green-50 rounded-xl p-5 text-center">
+          <h3 class="text-2xl font-extrabold text-green-700">35</h3>
+          <p class="text-xs text-green-700 font-bold mt-1">Selesai</p>
+        </div>
+        <div class="bg-red-50 rounded-xl p-5 text-center">
+          <h3 class="text-2xl font-extrabold text-red-700">4</h3>
+          <p class="text-xs text-red-700 font-bold mt-1">Ditolak</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex flex-wrap items-center gap-4 mb-6 bg-surface-container-lowest p-4 rounded-xl shadow-sm anim anim-2">
+        <div class="flex-1 min-w-[240px] relative">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+          <input class="w-full pl-12 pr-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium border-none focus:ring-2 focus:ring-primary/20" placeholder="Cari nomor dokumen..."/>
+        </div>
+        <div class="relative">
+          <select class="pl-4 pr-10 py-3 bg-surface-container-low rounded-xl text-sm font-medium text-on-surface border-none appearance-none focus:ring-2 focus:ring-primary/20">
+            <option>Semua Status</option><option>Menunggu Persetujuan</option><option>Disetujui</option><option>Ditolak</option><option>Selesai</option><option>Draft</option>
+          </select>
+          <span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-on-surface-variant text-sm">expand_more</span>
+        </div>
+        <div class="relative">
+          <select class="pl-4 pr-10 py-3 bg-surface-container-low rounded-xl text-sm font-medium text-on-surface border-none appearance-none focus:ring-2 focus:ring-primary/20">
+            <option>Semua Tipe</option><option>Pemasukan</option><option>Pengeluaran</option>
+          </select>
+          <span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-on-surface-variant text-sm">expand_more</span>
+        </div>
+        <input type="month" class="px-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium text-on-surface border-none focus:ring-2 focus:ring-primary/20" value="2026-04"/>
+      </div>
+
+      <!-- Table -->
+      <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-slate-200 anim anim-3">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-surface-container-low">
+              <th class="px-6 py-4 text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant">No. Dokumen</th>
+              <th class="px-6 py-4 text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant">Tipe</th>
+              <th class="px-6 py-4 text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant">Tanggal</th>
+              <th class="px-6 py-4 text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant text-center">Item</th>
+              <th class="px-6 py-4 text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant text-center">Status</th>
+              <th class="px-6 py-4 text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant text-right">Aksi</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y" style="border-color:rgba(217,221,224,0.3)">
+            <!-- Menunggu -->
+            <tr class="group hover:bg-surface-bright transition-colors">
+              <td class="px-6 py-5"><div><p class="font-mono font-bold text-xs text-on-surface">PGJ-MSK/KTR1/2026/00042</p><p class="text-[10px] text-on-surface-variant mt-0.5">by Andri Nugroho</p></div></td>
+              <td class="px-6 py-5"><span class="inline-flex items-center space-x-1 px-3 py-1 bg-blue-50 text-blue-700 border-blue-200 rounded-md text-[11px] font-medium border px-2 py-0.5"><span class="material-symbols-outlined text-sm">arrow_upward</span><span>PEMASUKAN</span></span></td>
+              <td class="px-6 py-5"><p class="text-sm font-medium text-on-surface">16 Apr 2026</p><p class="text-[10px] text-on-surface-variant">10:30</p></td>
+              <td class="px-6 py-5 text-center"><span class="font-bold text-on-surface">4</span></td>
+              <td class="px-6 py-5 text-center"><div class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-yellow-50 text-yellow-700 border-yellow-200 rounded-md text-[11px] font-medium border px-2 py-0.5"><div class="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-pulse"></div><span>MENUNGGU</span></div></td>
+              <td class="px-6 py-5 text-right">
+                <div class="flex items-center justify-end space-x-1">
+                  <button class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">visibility</span></button>
+                  <button class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">picture_as_pdf</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Disetujui -->
+            <tr class="group hover:bg-surface-bright transition-colors">
+              <td class="px-6 py-5"><div><p class="font-mono font-bold text-xs text-on-surface">PGJ-KLR/KTR1/2026/00041</p><p class="text-[10px] text-on-surface-variant mt-0.5">by Andri Nugroho</p></div></td>
+              <td class="px-6 py-5"><span class="inline-flex items-center space-x-1 px-3 py-1 bg-red-50 text-red-700 border-red-200 rounded-md text-[11px] font-medium border px-2 py-0.5"><span class="material-symbols-outlined text-sm">arrow_downward</span><span>PENGELUARAN</span></span></td>
+              <td class="px-6 py-5"><p class="text-sm font-medium text-on-surface">15 Apr 2026</p><p class="text-[10px] text-on-surface-variant">14:20</p></td>
+              <td class="px-6 py-5 text-center"><span class="font-bold text-on-surface">2</span></td>
+              <td class="px-6 py-5 text-center"><div class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-green-50 text-green-700 border-green-200 rounded-md text-[11px] font-medium border px-2 py-0.5"><div class="w-1.5 h-1.5 rounded-full bg-green-500"></div><span>DISETUJUI</span></div></td>
+              <td class="px-6 py-5 text-right">
+                <div class="flex items-center justify-end space-x-1">
+                  <button class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">visibility</span></button>
+                  <button class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">picture_as_pdf</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Selesai -->
+            <tr class="group hover:bg-surface-bright transition-colors">
+              <td class="px-6 py-5"><div><p class="font-mono font-bold text-xs text-on-surface">PGJ-MSK/KTR1/2026/00039</p><p class="text-[10px] text-on-surface-variant mt-0.5">by Andri Nugroho</p></div></td>
+              <td class="px-6 py-5"><span class="inline-flex items-center space-x-1 px-3 py-1 bg-blue-50 text-blue-700 border-blue-200 rounded-md text-[11px] font-medium border px-2 py-0.5"><span class="material-symbols-outlined text-sm">arrow_upward</span><span>PEMASUKAN</span></span></td>
+              <td class="px-6 py-5"><p class="text-sm font-medium text-on-surface">10 Apr 2026</p><p class="text-[10px] text-on-surface-variant">09:00</p></td>
+              <td class="px-6 py-5 text-center"><span class="font-bold text-on-surface">7</span></td>
+              <td class="px-6 py-5 text-center"><div class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-surface-container text-on-surface-variant rounded-md text-[11px] font-medium border px-2 py-0.5"><div class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></div><span>SELESAI</span></div></td>
+              <td class="px-6 py-5 text-right">
+                <div class="flex items-center justify-end space-x-1">
+                  <button class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">visibility</span></button>
+                  <button class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">picture_as_pdf</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Ditolak -->
+            <tr class="group hover:bg-surface-bright transition-colors">
+              <td class="px-6 py-5"><div><p class="font-mono font-bold text-xs text-on-surface">PGJ-KLR/KTR1/2026/00037</p><p class="text-[10px] text-on-surface-variant mt-0.5">by Andri Nugroho</p></div></td>
+              <td class="px-6 py-5"><span class="inline-flex items-center space-x-1 px-3 py-1 bg-red-50 text-red-700 border-red-200 rounded-md text-[11px] font-medium border px-2 py-0.5"><span class="material-symbols-outlined text-sm">arrow_downward</span><span>PENGELUARAN</span></span></td>
+              <td class="px-6 py-5"><p class="text-sm font-medium text-on-surface">5 Apr 2026</p><p class="text-[10px] text-on-surface-variant">11:05</p></td>
+              <td class="px-6 py-5 text-center"><span class="font-bold text-on-surface">3</span></td>
+              <td class="px-6 py-5 text-center"><div class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-red-50 text-red-700 border-red-200 rounded-md text-[11px] font-medium border px-2 py-0.5"><div class="w-1.5 h-1.5 rounded-full bg-red-500"></div><span>DITOLAK</span></div></td>
+              <td class="px-6 py-5 text-right">
+                <div class="flex items-center justify-end space-x-1">
+                  <button class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">visibility</span></button>
+                  <a href="pengajuan-buat.html" class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">edit</span></a>
+                  <button class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">picture_as_pdf</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Draft -->
+            <tr class="group hover:bg-surface-bright transition-colors">
+              <td class="px-6 py-5"><div><p class="font-mono font-bold text-xs text-on-surface">DRAFT – belum terkirim</p><p class="text-[10px] text-on-surface-variant mt-0.5">by Andri Nugroho</p></div></td>
+              <td class="px-6 py-5"><span class="inline-flex items-center space-x-1 px-3 py-1 bg-blue-50 text-blue-700 border-blue-200 rounded-md text-[11px] font-medium border px-2 py-0.5"><span class="material-symbols-outlined text-sm">arrow_upward</span><span>PEMASUKAN</span></span></td>
+              <td class="px-6 py-5"><p class="text-sm font-medium text-on-surface">16 Apr 2026</p><p class="text-[10px] text-on-surface-variant">08:45</p></td>
+              <td class="px-6 py-5 text-center"><span class="font-bold text-on-surface">1</span></td>
+              <td class="px-6 py-5 text-center"><div class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-surface-container-high text-on-surface-variant rounded-md text-[11px] font-medium border px-2 py-0.5"><div class="w-1.5 h-1.5 rounded-full bg-outline"></div><span>DRAFT</span></div></td>
+              <td class="px-6 py-5 text-right">
+                <div class="flex items-center justify-end space-x-1">
+                  <a href="pengajuan-buat.html" class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">edit</span></a>
+                  <button class="p-2 hover:bg-red-50 text-on-surface-variant hover:text-error transition-all rounded-xl"><span class="material-symbols-outlined text-xl">delete</span></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="px-6 py-5 bg-surface-container-low flex items-center justify-between">
+          <p class="text-on-surface-variant text-xs font-medium">Menampilkan 1–5 dari 42 pengajuan</p>
+          <div class="flex items-center space-x-2">
+            <button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-xl"><span class="material-symbols-outlined">chevron_left</span></button>
+            <button class="w-8 h-8 flex items-center justify-center bg-orange-600 text-white font-bold rounded-xl text-xs">1</button>
+            <button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container text-on-surface-variant font-bold rounded-xl text-xs">2</button>
+            <button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container text-on-surface-variant font-bold rounded-xl text-xs">3</button>
+            <button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-xl"><span class="material-symbols-outlined">chevron_right</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
+
+

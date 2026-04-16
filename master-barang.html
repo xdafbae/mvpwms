@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PT. Dian Pilar Utama | Master Barang</title>
+  <meta name="description" content="Kelola katalog barang, klasifikasi dan level stok secara real-time."/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary":"#9c3f00","primary-container":"#ff7a2f","on-primary":"#fff0ea","on-primary-container":"#401500",
+            "surface":"#f5f7f9","surface-bright":"#f5f7f9","surface-container-lowest":"#ffffff",
+            "surface-container-low":"#eef1f3","surface-container":"#e5e9eb","surface-container-high":"#dfe3e6","surface-container-highest":"#d9dde0",
+            "on-surface":"#2c2f31","on-surface-variant":"#595c5e","outline":"#747779","outline-variant":"#abadaf",
+            "error":"#b02500","error-container":"#f95630",
+          },
+          fontFamily: { sans: ["Plus Jakarta Sans","sans-serif"] }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .bg-orange-600 { background: #ea580c; }
+    .sidebar-link { display:flex; align-items:center; gap:12px; padding:12px 16px; border-radius:12px; font-size:14px; font-weight:500; color:#595c5e; transition:all 0.2s; }
+    .sidebar-link:hover { color:#9c3f00; background:#fff7f0; transform:translateX(4px); }
+    .sidebar-active { display:flex; align-items:center; gap:12px; padding:12px 16px; border-radius:12px; font-size:14px; font-weight:700; background:#fff; box-shadow:0 1px 4px rgba(44,47,49,0.08); color:#9c3f00; }
+    .modal-overlay { display:none; position:fixed; inset:0; background:rgba(44,47,49,0.4); backdrop-filter:blur(4px); z-index:100; align-items:center; justify-content:center; }
+    .modal-overlay.open { display:flex; }
+    @keyframes fade-up{ from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .anim{opacity:0;animation:fade-up 0.5s ease forwards;}
+    .anim-1{animation-delay:.05s}.anim-2{animation-delay:.1s}.anim-3{animation-delay:.15s}
+    select,input{outline:none;}
+    .pulse{animation:pulse-anim 2s infinite;}
+    @keyframes pulse-anim{0%,100%{opacity:1}50%{opacity:.5}}
+  </style>
+</head>
+<body class="bg-surface text-on-surface flex">
+
+  <!-- Sidebar -->
+  <aside class="h-screen w-64 fixed left-0 top-0 bg-slate-50 flex flex-col p-5 z-40">
+    <a href="office-select.html" class="flex items-center space-x-3 mb-8 px-2">
+      <div class="w-10 h-10 rounded-xl bg-orange-600 flex items-center justify-center shadow-lg">
+        <span class="material-symbols-outlined text-white">inventory_2</span>
+      </div>
+      <div><h2 class="text-on-surface font-extrabold text-sm">PT. Dian Pilar Utama</h2><p class="text-on-surface-variant text-[10px] uppercase tracking-widest font-bold">Kantor Pusat</p></div>
+    </a>
+    <div class="mb-5 px-2">
+      <div class="flex items-center space-x-2 px-4 py-2.5 bg-orange-50 rounded-xl border border-orange-100">
+        <span class="w-2 h-2 rounded-full bg-green-500 pulse"></span>
+        <span class="text-xs font-bold text-primary flex-1">KTR1 — Kantor Pusat</span>
+        <span class="material-symbols-outlined text-primary text-sm">unfold_more</span>
+      </div>
+    </div>
+    <nav class="flex-1 space-y-1">
+      <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest px-4 mb-2">Menu Utama</p>
+      <a href="dashboard.html" class="sidebar-link"><span class="material-symbols-outlined">dashboard</span><span>Dashboard</span></a>
+      <a href="master-barang.html" class="sidebar-active"><span class="material-symbols-outlined">inventory_2</span><span>Master Barang</span></a>
+      <a href="master-merk.html" class="sidebar-link"><span class="material-symbols-outlined">database</span><span>Master Data</span></a>
+      <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest px-4 mb-2 mt-5">Pengajuan</p>
+      <a href="pengajuan-buat.html" class="sidebar-link"><span class="material-symbols-outlined">add_circle</span><span>Buat Pengajuan</span></a>
+      <a href="pengajuan-riwayat.html" class="sidebar-link"><span class="material-symbols-outlined">history</span><span>Riwayat Pengajuan</span></a>
+      <a href="approval-inbox.html" class="sidebar-link"><span class="material-symbols-outlined">inbox</span><span>Inbox Pimpinan</span><span class="ml-auto bg-error text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span></a>
+      <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest px-4 mb-2 mt-5">Operasional</p>
+      <a href="gudang-inbox.html" class="sidebar-link"><span class="material-symbols-outlined">warehouse</span><span>Eksekusi Gudang</span><span class="ml-auto bg-primary-container text-on-primary-container text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">5</span></a>
+      <a href="stok-dashboard.html" class="sidebar-link"><span class="material-symbols-outlined">bar_chart</span><span>Stok Real-Time</span></a>
+      <a href="target-dashboard.html" class="sidebar-link"><span class="material-symbols-outlined">track_changes</span><span>Target</span></a>
+    </nav>
+    <div class="pt-4 border-t border-slate-200/60 space-y-1">
+      <a href="#" class="sidebar-link"><span class="material-symbols-outlined">help</span><span>Bantuan</span></a>
+      <a href="index.html" class="sidebar-link"><span class="material-symbols-outlined">logout</span><span>Keluar</span></a>
+    </div>
+  </aside>
+
+  <main class="pl-64 min-h-screen flex-1">
+    <!-- Topbar -->
+    <header class="sticky top-0 z-30 bg-white/80 backdrop-blur-xl shadow-[0px_4px_24px_rgba(44,47,49,0.06)] flex justify-between items-center px-8 h-16">
+      <nav class="flex items-center space-x-2 text-xs text-on-surface-variant font-medium">
+        <span>Master Data</span><span class="material-symbols-outlined text-sm">chevron_right</span>
+        <span class="text-on-surface font-bold">Master Barang</span>
+      </nav>
+      <div class="flex items-center space-x-3">
+        <button class="relative p-2 hover:bg-surface-container rounded-full transition-all">
+          <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+          <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error"></span>
+        </button>
+        <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-bold">AN</div>
+      </div>
+    </header>
+
+    <div class="p-8 max-w-7xl mx-auto">
+      <!-- Hero Header -->
+      <div class="flex flex-col md:flex-row justify-between items-end mb-10 anim anim-1">
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="text-on-surface-variant font-medium text-sm">Inventory Management</span>
+          </div>
+          <h1 class="text-2xl font-bold tracking-tight text-on-surface">Master Barang</h1>
+          <p class="text-on-surface-variant">Kelola katalog barang, status stok, dan klasifikasi produk.</p>
+        </div>
+        <div class="flex space-x-3 mt-6 md:mt-0">
+          <button class="px-5 py-3 bg-surface-container-highest text-on-surface rounded-xl font-bold hover:bg-surface-container-high transition-all active:scale-95 flex items-center space-x-2 text-sm">
+            <span class="material-symbols-outlined text-xl">file_download</span><span>Export CSV</span>
+          </button>
+          <button onclick="document.getElementById('modalTambah').classList.add('open')" class="px-6 py-3 bg-slate-900 text-white rounded-lg font-medium hover:bg-slate-800 transition-colors shadow-sm flex items-center space-x-2 text-sm">
+            <span class="material-symbols-outlined text-xl">add</span><span>Tambah Barang</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Bento -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-8 anim anim-2">
+        <div class="md:col-span-2 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-slate-200 relative overflow-hidden">
+          
+          <p class="text-on-surface-variant text-xs font-bold uppercase tracking-wide mb-1">Total SKU Aktif</p>
+          <h3 class="text-2xl font-bold text-on-surface mb-3">1,284</h3>
+          <div class="flex items-center text-green-600 text-xs font-bold"><span class="material-symbols-outlined text-sm mr-1">trending_up</span><span>+12.5% bulan ini</span></div>
+        </div>
+        <div class="bg-surface-container-low p-6 rounded-xl">
+          <p class="text-on-surface-variant text-xs font-bold uppercase tracking-wide mb-1">Stok Menipis</p>
+          <h3 class="text-2xl font-bold text-error mb-3">24</h3>
+          <div class="flex items-center text-error text-xs font-bold"><div class="w-2 h-2 rounded-full bg-error mr-2 animate-pulse"></div><span>Perlu perhatian</span></div>
+        </div>
+        <div class="bg-surface-container p-6 rounded-xl">
+          <p class="text-on-surface-variant text-xs font-bold uppercase tracking-wide mb-1">Stok Habis</p>
+          <h3 class="text-2xl font-bold text-on-surface mb-3">6</h3>
+          <p class="text-on-surface-variant text-xs">Perlu order segera</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex flex-wrap items-center gap-4 mb-6 bg-surface-container-lowest p-4 rounded-xl shadow-sm anim anim-2">
+        <div class="flex-1 min-w-[260px] relative">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+          <input class="w-full pl-12 pr-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all border-none" placeholder="Cari nama barang, kode, atau merk..." type="text"/>
+        </div>
+        <div class="relative">
+          <select class="pl-4 pr-10 py-3 bg-surface-container-low rounded-xl text-sm font-medium text-on-surface border-none appearance-none focus:ring-2 focus:ring-primary/20">
+            <option>Semua Jenis</option><option>Material Bangunan</option><option>ATK</option><option>Elektronik</option><option>Kebersihan</option>
+          </select>
+          <span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-on-surface-variant text-sm">expand_more</span>
+        </div>
+        <div class="relative">
+          <select class="pl-4 pr-10 py-3 bg-surface-container-low rounded-xl text-sm font-medium text-on-surface border-none appearance-none focus:ring-2 focus:ring-primary/20">
+            <option>Semua Status</option><option>Aman</option><option>Menipis</option><option>Habis</option>
+          </select>
+          <span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-on-surface-variant text-sm">expand_more</span>
+        </div>
+        <div class="flex gap-2">
+          <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-xs font-bold cursor-pointer">Semua</span>
+          <span class="px-4 py-2 hover:bg-surface-container text-on-surface-variant rounded-full text-xs font-bold cursor-pointer transition-colors">Material</span>
+          <span class="px-4 py-2 hover:bg-surface-container text-on-surface-variant rounded-full text-xs font-bold cursor-pointer transition-colors">ATK</span>
+          <span class="px-4 py-2 hover:bg-surface-container text-on-surface-variant rounded-full text-xs font-bold cursor-pointer transition-colors">Elektronik</span>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-slate-200 anim anim-3">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-surface-container-low">
+              <th class="px-8 py-5 text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant">Barang</th>
+              <th class="px-8 py-5 text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant">Klasifikasi</th>
+              <th class="px-8 py-5 text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant">Level Stok</th>
+              <th class="px-8 py-5 text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant text-center">Status</th>
+              <th class="px-8 py-5 text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant text-right">Aksi</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y" style="border-color:rgba(217,221,224,0.3)">
+            <!-- Row: Aman -->
+            <tr class="group hover:bg-surface-bright transition-colors">
+              <td class="px-8 py-5">
+                <div class="flex items-center space-x-4">
+                  <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center"><span class="material-symbols-outlined text-primary">construction</span></div>
+                  <div>
+                    <p class="font-bold text-on-surface">Semen Tiga Roda 50kg</p>
+                    <p class="text-on-surface-variant text-xs font-mono">BRG/KTR1/2026/00001</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-8 py-5">
+                <div class="space-y-1">
+                  <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant rounded-md text-[11px] font-medium border px-2 py-0.5 uppercase block w-fit">Material Bangunan</span>
+                  <span class="text-xs text-on-surface-variant">Holcim · Satuan: Sak</span>
+                </div>
+              </td>
+              <td class="px-8 py-5">
+                <div class="space-y-1.5">
+                  <div class="flex justify-between items-center w-36 mb-1">
+                    <span class="text-xs font-bold text-on-surface">450 sak</span>
+                    <span class="text-[10px] text-on-surface-variant">Min: 50</span>
+                  </div>
+                  <div class="w-36 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="bg-green-500 h-full rounded-full" style="width:75%"></div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-8 py-5 text-center">
+                <div class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-green-50 text-green-700 border-green-200 rounded-md text-[11px] font-medium border px-2 py-0.5">
+                  <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div><span>AMAN</span>
+                </div>
+              </td>
+              <td class="px-8 py-5 text-right">
+                <div class="flex items-center justify-end space-x-1">
+                  <button onclick="document.getElementById('modalEdit').classList.add('open')" class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">edit</span></button>
+                  <a href="stok-dashboard.html" class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">visibility</span></a>
+                  <button class="p-2 hover:bg-red-50 text-on-surface-variant hover:text-error transition-all rounded-xl"><span class="material-symbols-outlined text-xl">delete</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row: Menipis -->
+            <tr class="group hover:bg-surface-bright transition-colors">
+              <td class="px-8 py-5">
+                <div class="flex items-center space-x-4">
+                  <div class="w-12 h-12 rounded-xl bg-yellow-50 flex items-center justify-center"><span class="material-symbols-outlined text-yellow-600">cleaning_services</span></div>
+                  <div>
+                    <p class="font-bold text-on-surface">Sabun Pembersih Lantai 5L</p>
+                    <p class="text-on-surface-variant text-xs font-mono">BRG/KTR1/2026/00002</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-8 py-5">
+                <div class="space-y-1">
+                  <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant rounded-md text-[11px] font-medium border px-2 py-0.5 uppercase block w-fit">Kebersihan</span>
+                  <span class="text-xs text-on-surface-variant">Unilever · Satuan: Pcs</span>
+                </div>
+              </td>
+              <td class="px-8 py-5">
+                <div class="space-y-1.5">
+                  <div class="flex justify-between items-center w-36 mb-1 text-yellow-700">
+                    <span class="text-xs font-bold">22 pcs</span>
+                    <span class="text-[10px] opacity-70">Min: 30</span>
+                  </div>
+                  <div class="w-36 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="bg-yellow-500 h-full rounded-full" style="width:22%"></div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-8 py-5 text-center">
+                <div class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-yellow-50 text-yellow-700 border-yellow-200 rounded-md text-[11px] font-medium border px-2 py-0.5">
+                  <div class="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-pulse"></div><span>MENIPIS</span>
+                </div>
+              </td>
+              <td class="px-8 py-5 text-right">
+                <div class="flex items-center justify-end space-x-1">
+                  <button onclick="document.getElementById('modalEdit').classList.add('open')" class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">edit</span></button>
+                  <a href="stok-dashboard.html" class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">visibility</span></a>
+                  <button class="p-2 hover:bg-red-50 text-on-surface-variant hover:text-error transition-all rounded-xl"><span class="material-symbols-outlined text-xl">delete</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row: Habis -->
+            <tr class="group hover:bg-surface-bright transition-colors">
+              <td class="px-8 py-5">
+                <div class="flex items-center space-x-4">
+                  <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center"><span class="material-symbols-outlined text-red-500">electrical_services</span></div>
+                  <div>
+                    <p class="font-bold text-on-surface">Kabel NYM 2.5mm Rol</p>
+                    <p class="text-on-surface-variant text-xs font-mono">BRG/KTR1/2026/00003</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-8 py-5">
+                <div class="space-y-1">
+                  <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant rounded-md text-[11px] font-medium border px-2 py-0.5 uppercase block w-fit">Material Bangunan</span>
+                  <span class="text-xs text-on-surface-variant">Supreme · Satuan: Roll</span>
+                </div>
+              </td>
+              <td class="px-8 py-5">
+                <div class="space-y-1.5">
+                  <div class="flex justify-between items-center w-36 mb-1 text-error">
+                    <span class="text-xs font-bold">0 roll</span>
+                    <span class="text-[10px] opacity-70">Min: 10</span>
+                  </div>
+                  <div class="w-36 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="bg-error h-full rounded-full" style="width:0%"></div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-8 py-5 text-center">
+                <div class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-red-50 text-red-700 border-red-200 rounded-md text-[11px] font-medium border px-2 py-0.5">
+                  <div class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></div><span>HABIS</span>
+                </div>
+              </td>
+              <td class="px-8 py-5 text-right">
+                <div class="flex items-center justify-end space-x-1">
+                  <button onclick="document.getElementById('modalEdit').classList.add('open')" class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">edit</span></button>
+                  <a href="stok-dashboard.html" class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">visibility</span></a>
+                  <button class="p-2 hover:bg-red-50 text-on-surface-variant hover:text-error transition-all rounded-xl"><span class="material-symbols-outlined text-xl">delete</span></button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row: Aman lagi -->
+            <tr class="group hover:bg-surface-bright transition-colors">
+              <td class="px-8 py-5">
+                <div class="flex items-center space-x-4">
+                  <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center"><span class="material-symbols-outlined text-blue-500">print</span></div>
+                  <div>
+                    <p class="font-bold text-on-surface">Tinta Printer Canon PG-745</p>
+                    <p class="text-on-surface-variant text-xs font-mono">BRG/KTR1/2026/00004</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-8 py-5">
+                <div class="space-y-1">
+                  <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant rounded-md text-[11px] font-medium border px-2 py-0.5 uppercase block w-fit">ATK</span>
+                  <span class="text-xs text-on-surface-variant">Canon · Satuan: Pcs</span>
+                </div>
+              </td>
+              <td class="px-8 py-5">
+                <div class="space-y-1.5">
+                  <div class="flex justify-between items-center w-36 mb-1 text-yellow-700">
+                    <span class="text-xs font-bold">18 pcs</span>
+                    <span class="text-[10px] opacity-70">Min: 20</span>
+                  </div>
+                  <div class="w-36 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+                    <div class="bg-yellow-500 h-full rounded-full" style="width:18%"></div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-8 py-5 text-center">
+                <div class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-yellow-50 text-yellow-700 border-yellow-200 rounded-md text-[11px] font-medium border px-2 py-0.5">
+                  <div class="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-pulse"></div><span>MENIPIS</span>
+                </div>
+              </td>
+              <td class="px-8 py-5 text-right">
+                <div class="flex items-center justify-end space-x-1">
+                  <button onclick="document.getElementById('modalEdit').classList.add('open')" class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">edit</span></button>
+                  <a href="stok-dashboard.html" class="p-2 hover:bg-primary/10 text-on-surface-variant hover:text-primary transition-all rounded-xl"><span class="material-symbols-outlined text-xl">visibility</span></a>
+                  <button class="p-2 hover:bg-red-50 text-on-surface-variant hover:text-error transition-all rounded-xl"><span class="material-symbols-outlined text-xl">delete</span></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- Pagination -->
+        <div class="px-8 py-5 bg-surface-container-low flex items-center justify-between">
+          <p class="text-on-surface-variant text-xs font-medium">Menampilkan 1–4 dari 1,284 data</p>
+          <div class="flex items-center space-x-2">
+            <button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-xl transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+            <button class="w-8 h-8 flex items-center justify-center bg-orange-600 text-white font-bold rounded-xl text-xs">1</button>
+            <button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container text-on-surface-variant font-bold rounded-xl text-xs">2</button>
+            <button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container text-on-surface-variant font-bold rounded-xl text-xs">3</button>
+            <span class="text-on-surface-variant px-1 text-xs">...</span>
+            <button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container text-on-surface-variant font-bold rounded-xl text-xs">128</button>
+            <button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-xl transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal Tambah Barang -->
+  <div id="modalTambah" class="modal-overlay" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="bg-surface-container-lowest rounded-xl w-full max-w-lg p-8 shadow-xl border border-slate-200 mx-4">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-extrabold text-on-surface">Tambah Barang Baru</h2>
+        <button onclick="document.getElementById('modalTambah').classList.remove('open')" class="p-2 hover:bg-surface-container rounded-xl transition-all"><span class="material-symbols-outlined text-on-surface-variant">close</span></button>
+      </div>
+      <div class="space-y-4">
+        <div class="space-y-1.5">
+          <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wide">Nama Barang *</label>
+          <input class="w-full px-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium border-none focus:ring-2 focus:ring-primary/20" placeholder="Masukkan nama barang..."/>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wide">Merk *</label>
+            <div class="relative">
+              <select class="w-full px-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium border-none appearance-none focus:ring-2 focus:ring-primary/20">
+                <option>Pilih Merk</option><option>Holcim</option><option>Unilever</option><option>Canon</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-on-surface-variant text-sm">expand_more</span>
+            </div>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wide">Jenis Barang *</label>
+            <div class="relative">
+              <select class="w-full px-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium border-none appearance-none focus:ring-2 focus:ring-primary/20">
+                <option>Pilih Jenis</option><option>Material Bangunan</option><option>ATK</option><option>Elektronik</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-on-surface-variant text-sm">expand_more</span>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wide">Satuan *</label>
+            <input class="w-full px-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium border-none focus:ring-2 focus:ring-primary/20" placeholder="pcs / sak / liter / roll"/>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wide">Stok Minimum *</label>
+            <input type="number" class="w-full px-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium border-none focus:ring-2 focus:ring-primary/20" placeholder="0"/>
+          </div>
+        </div>
+        <div class="space-y-1.5">
+          <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wide">Stok Awal</label>
+          <input type="number" class="w-full px-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium border-none focus:ring-2 focus:ring-primary/20" placeholder="0"/>
+        </div>
+      </div>
+      <div class="flex space-x-3 mt-8">
+        <button onclick="document.getElementById('modalTambah').classList.remove('open')" class="flex-1 py-3 bg-surface-container-highest text-on-surface rounded-xl font-bold text-sm hover:bg-surface-container-high transition-all">Batal</button>
+        <button onclick="document.getElementById('modalTambah').classList.remove('open')" class="flex-1 py-3 bg-orange-600 text-white rounded-xl font-bold text-sm shadow-lg shadow-orange-500/20 hover:opacity-90 transition-all">Simpan Barang</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Edit (same structure, pre-filled) -->
+  <div id="modalEdit" class="modal-overlay" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="bg-surface-container-lowest rounded-xl w-full max-w-lg p-8 shadow-xl border border-slate-200 mx-4">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-extrabold text-on-surface">Edit Barang</h2>
+        <button onclick="document.getElementById('modalEdit').classList.remove('open')" class="p-2 hover:bg-surface-container rounded-xl transition-all"><span class="material-symbols-outlined text-on-surface-variant">close</span></button>
+      </div>
+      <div class="space-y-4">
+        <div class="space-y-1.5">
+          <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wide">Nama Barang *</label>
+          <input class="w-full px-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium border-none focus:ring-2 focus:ring-primary/20" value="Semen Tiga Roda 50kg"/>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wide">Merk *</label>
+            <input class="w-full px-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium border-none focus:ring-2 focus:ring-primary/20" value="Holcim"/>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wide">Jenis Barang *</label>
+            <input class="w-full px-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium border-none focus:ring-2 focus:ring-primary/20" value="Material Bangunan"/>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wide">Satuan</label>
+            <input class="w-full px-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium border-none focus:ring-2 focus:ring-primary/20" value="Sak"/>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wide">Stok Minimum</label>
+            <input type="number" class="w-full px-4 py-3 bg-surface-container-low rounded-xl text-sm font-medium border-none focus:ring-2 focus:ring-primary/20" value="50"/>
+          </div>
+        </div>
+      </div>
+      <div class="flex space-x-3 mt-8">
+        <button onclick="document.getElementById('modalEdit').classList.remove('open')" class="flex-1 py-3 bg-surface-container-highest text-on-surface rounded-xl font-bold text-sm hover:bg-surface-container-high transition-all">Batal</button>
+        <button onclick="document.getElementById('modalEdit').classList.remove('open')" class="flex-1 py-3 bg-orange-600 text-white rounded-xl font-bold text-sm shadow-lg shadow-orange-500/20 hover:opacity-90 transition-all">Simpan Perubahan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAB -->
+  <button onclick="document.getElementById('modalTambah').classList.add('open')" class="fixed bottom-8 right-8 w-14 h-14 bg-orange-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group">
+    <span class="material-symbols-outlined text-2xl transition-transform group-hover:rotate-90">add</span>
+  </button>
+
+</body>
+</html>
+
+

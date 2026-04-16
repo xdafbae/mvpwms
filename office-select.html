@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PT. Dian Pilar Utama | Pilih Kantor</title>
+  <meta name="description" content="Pilih kantor yang ingin Anda kelola di platform PT. Dian Pilar Utama."/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#9c3f00", "primary-container": "#ff7a2f",
+            "on-primary": "#fff0ea", "on-primary-container": "#401500",
+            "surface": "#f5f7f9", "surface-bright": "#f5f7f9",
+            "surface-container-lowest": "#ffffff", "surface-container-low": "#eef1f3",
+            "surface-container": "#e5e9eb", "surface-container-high": "#dfe3e6",
+            "surface-container-highest": "#d9dde0",
+            "on-surface": "#2c2f31", "on-surface-variant": "#595c5e",
+            "outline": "#747779", "outline-variant": "#abadaf",
+          },
+          fontFamily: { sans: ["Plus Jakarta Sans", "sans-serif"] }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .bg-orange-600 { background: #ea580c; }
+    @keyframes fade-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .card-anim { /* anim removed */ }
+    .card-anim:nth-child(1) { animation-delay: 0.1s; }
+    .card-anim:nth-child(2) { animation-delay: 0.2s; }
+    .card-anim:nth-child(3) { animation-delay: 0.3s; }
+    .card-anim:nth-child(4) { animation-delay: 0.4s; }
+    .card-anim:nth-child(5) { animation-delay: 0.5s; }
+    .pulse-dot { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+
+  <!-- TopNav -->
+  <nav class="w-full sticky top-0 z-50 bg-white/80 backdrop-blur-xl shadow-[0px_4px_24px_rgba(44,47,49,0.06)] flex justify-between items-center px-8 h-16">
+    <div class="flex items-center space-x-3">
+      <div class="w-9 h-9 rounded-xl bg-orange-600 flex items-center justify-center">
+        <span class="material-symbols-outlined text-white text-lg">inventory_2</span>
+      </div>
+      <span class="text-lg font-extrabold tracking-tight bg-gradient-to-br from-orange-700 to-orange-400 bg-clip-text text-transparent">PT. Dian Pilar Utama</span>
+    </div>
+    <div class="flex items-center space-x-3">
+      <button class="p-2 hover:bg-surface-container rounded-full transition-all">
+        <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-bold">AN</div>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-8 pt-12 pb-24">
+
+    <!-- Header -->
+    <header class="mb-12 card-anim">
+      <div class="flex items-center space-x-2 mb-3">
+        <span class="text-on-surface-variant font-medium text-sm">PT. Dian Pilar Utama</span>
+      </div>
+      <h1 class="text-5xl font-extrabold text-on-surface tracking-tight mb-4">Pilih Kantor Anda</h1>
+      <p class="text-on-surface-variant text-lg max-w-lg leading-relaxed">
+        Sistem inventaris multi-cabang terpadu. Pilih kantor atau cabang PT. Dian Pilar Utama untuk mulai bekerja.
+      </p>
+    </header>
+
+    <!-- Bento Grid Office Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-5 mb-12">
+
+      <!-- Kantor 1 - Featured (HQ) -->
+      <a href="dashboard.html" class="card-anim md:col-span-8 group relative overflow-hidden bg-surface-container-lowest rounded-xl shadow-sm border border-slate-200 hover:shadow-[0px_20px_48px_rgba(44,47,49,0.14)] transition-all duration-500 cursor-pointer hover:-translate-y-1">
+        <div class="flex flex-col md:flex-row h-full min-h-[260px]">
+          <div class="md:w-1/2 p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center space-x-2 mb-4">
+                <span class="w-2 h-2 rounded-full bg-green-500 pulse-dot"></span>
+                <span class="text-green-600 font-bold text-xs uppercase tracking-widest">Aktif — Kantor Pusat</span>
+              </div>
+              <div class="inline-flex items-center space-x-2 bg-surface-container-low rounded-full px-3 py-1 mb-4">
+                <span class="material-symbols-outlined text-primary text-sm">apartment</span>
+                <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">KTR1</span>
+              </div>
+              <h2 class="text-3xl font-extrabold text-on-surface mb-2 tracking-tight">Kantor Pusat</h2>
+              <p class="text-on-surface-variant text-sm leading-relaxed">Jakarta — Pusat distribusi utama. Mengelola seluruh alur pengajuan dan inventaris.\n</p>
+            </div>
+            <div class="flex space-x-3 mt-6">
+              <div class="bg-surface-container-low px-4 py-2.5 rounded-xl">
+                <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wide">Kapasitas</p>
+                <p class="font-extrabold text-on-surface">87%</p>
+              </div>
+              <div class="bg-surface-container-low px-4 py-2.5 rounded-xl">
+                <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wide">Staff</p>
+                <p class="font-extrabold text-on-surface">24</p>
+              </div>
+              <div class="bg-orange-50 px-4 py-2.5 rounded-xl">
+                <p class="text-[10px] text-primary font-bold uppercase tracking-wide">Peran Anda</p>
+                <p class="font-extrabold text-primary">Pimpinan</p>
+              </div>
+            </div>
+          </div>
+          <div class="md:w-1/2 relative min-h-[200px] bg-gradient-to-br from-orange-100 to-orange-50 overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="relative">
+                <div class="w-40 h-40 rounded-full bg-primary/10 flex items-center justify-center">
+                  <div class="w-28 h-28 rounded-full bg-primary/15 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-6xl text-primary/40">apartment</span>
+                  </div>
+                </div>
+                <div class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center shadow-lg">
+                  <span class="material-symbols-outlined text-white text-sm">star</span>
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-l from-transparent to-surface-container-lowest/50 md:block hidden"></div>
+          </div>
+        </div>
+        <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div class="bg-orange-600 text-white rounded-xl px-4 py-2 text-xs font-bold flex items-center space-x-1.5 shadow-lg">
+            <span>Masuk</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Kantor 2 -->
+      <a href="dashboard.html" class="card-anim md:col-span-4 group bg-surface-container-lowest rounded-xl shadow-sm border border-slate-200 hover:shadow-[0px_20px_48px_rgba(44,47,49,0.14)] transition-all duration-500 cursor-pointer hover:-translate-y-1 flex flex-col overflow-hidden">
+        <div class="h-40 relative bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center overflow-hidden">
+          <div class="w-24 h-24 rounded-full bg-blue-100/80 flex items-center justify-center">
+            <span class="material-symbols-outlined text-5xl text-blue-400">warehouse</span>
+          </div>
+          <div class="absolute top-3 left-3 inline-flex items-center space-x-1.5 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+            <span class="text-[10px] font-bold text-on-surface-variant uppercase">Aktif</span>
+          </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center space-x-1.5 bg-surface-container-low rounded-full px-2.5 py-1 mb-3">
+              <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">KTR2</span>
+            </div>
+            <h2 class="text-xl font-extrabold text-on-surface mb-1 tracking-tight">Kantor Cabang A</h2>
+            <p class="text-sm text-on-surface-variant">Gudang & distribusi area selatan.</p>
+          </div>
+          <div class="flex items-center justify-between mt-4">
+            <span class="text-xs font-bold text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full">Manajerial</span>
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 transition-all">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Kantor 3 -->
+      <a href="dashboard.html" class="card-anim md:col-span-4 group bg-surface-container-lowest rounded-xl shadow-sm border border-slate-200 hover:shadow-[0px_20px_48px_rgba(44,47,49,0.14)] transition-all duration-500 cursor-pointer hover:-translate-y-1 flex flex-col overflow-hidden">
+        <div class="h-40 relative bg-gradient-to-br from-emerald-50 to-teal-50 flex items-center justify-center overflow-hidden">
+          <div class="w-24 h-24 rounded-full bg-emerald-100/80 flex items-center justify-center">
+            <span class="material-symbols-outlined text-5xl text-emerald-400">storefront</span>
+          </div>
+          <div class="absolute top-3 left-3 inline-flex items-center space-x-1.5 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+            <span class="text-[10px] font-bold text-on-surface-variant uppercase">Aktif</span>
+          </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center space-x-1.5 bg-surface-container-low rounded-full px-2.5 py-1 mb-3">
+              <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">KTR3</span>
+            </div>
+            <h2 class="text-xl font-extrabold text-on-surface mb-1 tracking-tight">Kantor Cabang B</h2>
+            <p class="text-sm text-on-surface-variant">Distribusi wilayah timur & kepulauan.</p>
+          </div>
+          <div class="flex items-center justify-between mt-4">
+            <span class="text-xs font-bold text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full">Gudang</span>
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 transition-all">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Kantor 4 -->
+      <a href="dashboard.html" class="card-anim md:col-span-4 group bg-surface-container-lowest rounded-xl shadow-sm border border-slate-200 hover:shadow-[0px_20px_48px_rgba(44,47,49,0.14)] transition-all duration-500 cursor-pointer hover:-translate-y-1 flex flex-col overflow-hidden">
+        <div class="h-40 relative bg-gradient-to-br from-purple-50 to-violet-50 flex items-center justify-center overflow-hidden">
+          <div class="w-24 h-24 rounded-full bg-purple-100/80 flex items-center justify-center">
+            <span class="material-symbols-outlined text-5xl text-purple-400">corporate_fare</span>
+          </div>
+          <div class="absolute top-3 left-3 inline-flex items-center space-x-1.5 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+            <span class="text-[10px] font-bold text-on-surface-variant uppercase">Maintenance</span>
+          </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center space-x-1.5 bg-surface-container-low rounded-full px-2.5 py-1 mb-3">
+              <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">KTR4</span>
+            </div>
+            <h2 class="text-xl font-extrabold text-on-surface mb-1 tracking-tight">Kantor Cabang C</h2>
+            <p class="text-sm text-on-surface-variant">Pusat logistik region barat.</p>
+          </div>
+          <div class="flex items-center justify-between mt-4">
+            <span class="text-xs font-bold text-yellow-700 bg-yellow-50 px-3 py-1 rounded-full">Maintenance 2j lagi</span>
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 transition-all">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Bottom Stats Bar -->
+    <section class="card-anim bg-surface-container-lowest rounded-xl p-8 shadow-sm border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="flex items-center space-x-5">
+        <div class="flex -space-x-2">
+          <div class="w-9 h-9 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-bold border-2 border-white">A</div>
+          <div class="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-bold border-2 border-white">B</div>
+          <div class="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white text-xs font-bold border-2 border-white">C</div>
+          <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant text-xs font-bold border-2 border-white">+5</div>
+        </div>
+        <div>
+          <p class="font-bold text-on-surface text-sm">8 pengguna online</p>
+          <p class="text-xs text-on-surface-variant">Di seluruh 4 kantor saat ini</p>
+        </div>
+      </div>
+      <div class="flex gap-12">
+        <div class="text-center">
+          <span class="block text-2xl font-extrabold text-primary">2,481</span>
+          <span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Total SKU</span>
+        </div>
+        <div class="text-center">
+          <span class="block text-2xl font-extrabold text-primary">48</span>
+          <span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Pengajuan Aktif</span>
+        </div>
+        <div class="text-center">
+          <span class="block text-2xl font-extrabold text-primary">99.9%</span>
+          <span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Uptime</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
+
+

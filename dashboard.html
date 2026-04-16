@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PT. Dian Pilar Utama | Dashboard</title>
+  <meta name="description" content="Dashboard utama sistem inventaris dan pengadaan barang PT. Dian Pilar Utama."/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#9c3f00","primary-container": "#ff7a2f","on-primary": "#fff0ea","on-primary-container": "#401500",
+            "surface": "#f5f7f9","surface-bright": "#f5f7f9","surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eef1f3","surface-container": "#e5e9eb","surface-container-high": "#dfe3e6","surface-container-highest": "#d9dde0",
+            "on-surface": "#2c2f31","on-surface-variant": "#595c5e","outline": "#747779","outline-variant": "#abadaf",
+            "error": "#b02500","error-container": "#f95630",
+          },
+          fontFamily: { sans: ["Plus Jakarta Sans","sans-serif"] }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .bg-orange-600 { background: #ea580c; }
+    .sidebar-link{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:14px;font-weight:500;color:#595c5e;transition:all 0.2s;}
+    .sidebar-link:hover{color:#9c3f00;background:#fff7f0;transform:translateX(4px);}
+    .sidebar-active{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;font-size:14px;font-weight:700;background:#fff;box-shadow:0 1px 4px rgba(44,47,49,0.08);color:#9c3f00;}
+    @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .anim { /* anim removed */ }
+    .anim-1 { animation-delay: 0.05s; } .anim-2 { animation-delay: 0.1s; }
+    .anim-3 { animation-delay: 0.15s; } .anim-4 { animation-delay: 0.2s; }
+    .pulse { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
+  </style>
+</head>
+<body class="bg-surface text-on-surface flex">
+
+  <!-- Sidebar -->
+  <aside class="h-screen w-64 fixed left-0 top-0 bg-slate-50 flex flex-col p-5 z-40">
+    <!-- Logo -->
+    <a href="office-select.html" class="flex items-center space-x-3 mb-8 px-2 group">
+      <div class="w-10 h-10 rounded-xl bg-orange-600 flex items-center justify-center shadow-lg">
+        <span class="material-symbols-outlined text-white">inventory_2</span>
+      </div>
+      <div>
+        <h2 class="text-on-surface font-extrabold text-sm leading-tight">PT. Dian Pilar Utama</h2>
+        <p class="text-on-surface-variant text-[10px] uppercase tracking-widest font-bold">Kantor Pusat</p>
+      </div>
+    </a>
+
+    <!-- Office Switcher -->
+    <div class="mb-5 px-2">
+      <div class="flex items-center space-x-2 px-4 py-2.5 bg-orange-50 rounded-xl border border-orange-100">
+        <span class="w-2 h-2 rounded-full bg-green-500 pulse"></span>
+        <span class="text-xs font-bold text-primary flex-1">KTR1 — Kantor Pusat</span>
+        <span class="material-symbols-outlined text-primary text-sm">unfold_more</span>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="flex-1 space-y-1">
+      <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest px-4 mb-2">Menu Utama</p>
+      <a href="dashboard.html" class="sidebar-active">
+        <span class="material-symbols-outlined">dashboard</span><span>Dashboard</span>
+      </a>
+      <a href="master-barang.html" class="sidebar-link">
+        <span class="material-symbols-outlined">inventory_2</span><span>Master Barang</span>
+      </a>
+      <a href="master-merk.html" class="sidebar-link">
+        <span class="material-symbols-outlined">database</span><span>Master Data</span>
+      </a>
+
+      <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest px-4 mb-2 mt-5">Pengajuan</p>
+      <a href="pengajuan-buat.html" class="sidebar-link">
+        <span class="material-symbols-outlined">add_circle</span><span>Buat Pengajuan</span>
+      </a>
+      <a href="pengajuan-riwayat.html" class="sidebar-link">
+        <span class="material-symbols-outlined">history</span><span>Riwayat Pengajuan</span>
+      </a>
+      <a href="approval-inbox.html" class="sidebar-link">
+        <span class="material-symbols-outlined">inbox</span>
+        <span>Inbox Pimpinan</span>
+        <span class="ml-auto bg-error text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+      </a>
+
+      <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest px-4 mb-2 mt-5">Operasional</p>
+      <a href="gudang-inbox.html" class="sidebar-link">
+        <span class="material-symbols-outlined">warehouse</span>
+        <span>Eksekusi Gudang</span>
+        <span class="ml-auto bg-primary-container text-on-primary-container text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">5</span>
+      </a>
+      <a href="stok-dashboard.html" class="sidebar-link">
+        <span class="material-symbols-outlined">bar_chart</span><span>Stok Real-Time</span>
+      </a>
+      <a href="target-dashboard.html" class="sidebar-link">
+        <span class="material-symbols-outlined">track_changes</span><span>Target</span>
+      </a>
+    </nav>
+
+    <!-- Bottom -->
+    <div class="pt-4 border-t border-slate-200/60 space-y-1">
+      <a href="#" class="sidebar-link"><span class="material-symbols-outlined">help</span><span>Bantuan</span></a>
+      <a href="index.html" class="sidebar-link"><span class="material-symbols-outlined">logout</span><span>Keluar</span></a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="pl-64 min-h-screen flex-1">
+    <!-- Topbar -->
+    <header class="sticky top-0 z-30 bg-white/80 backdrop-blur-xl shadow-[0px_4px_24px_rgba(44,47,49,0.06)] flex justify-between items-center px-8 h-16">
+      <div>
+        <nav class="flex items-center space-x-2 text-xs text-on-surface-variant font-medium">
+          <span>KTR1</span>
+          <span class="material-symbols-outlined text-sm">chevron_right</span>
+          <span class="text-on-surface font-bold">Dashboard</span>
+        </nav>
+      </div>
+      <div class="flex items-center space-x-3">
+        <button class="relative p-2 hover:bg-surface-container rounded-full transition-all">
+          <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+          <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error"></span>
+        </button>
+        <button class="p-2 hover:bg-surface-container rounded-full transition-all">
+          <span class="material-symbols-outlined text-on-surface-variant">settings</span>
+        </button>
+        <div class="flex items-center space-x-2 pl-2 border-l border-surface-container-high">
+          <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-bold">AN</div>
+          <div class="hidden md:block">
+            <p class="text-xs font-bold text-on-surface leading-none">Andri N.</p>
+            <p class="text-[10px] text-on-surface-variant">Pimpinan</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="p-8 max-w-7xl mx-auto">
+
+      <!-- Page Header -->
+      <div class="flex justify-between items-end mb-8 anim anim-1">
+        <div>
+          <p class="text-xs text-on-surface-variant mb-1">KTR1 · Rabu, 16 April 2026</p>
+          <h1 class="text-2xl font-bold text-on-surface tracking-tight">Dashboard</h1>
+        </div>
+        <a href="pengajuan-buat.html" class="px-4 py-2 bg-orange-600 text-white rounded-lg font-semibold text-sm hover:opacity-90 active:scale-95 transition-all flex items-center gap-2">
+          <span class="material-symbols-outlined text-base">add</span>
+          <span>Buat Pengajuan</span>
+        </a>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="grid grid-cols-4 gap-4 mb-8">
+        <div class="anim anim-1 bg-surface-container-lowest rounded-xl px-5 py-4 shadow-[0_1px_4px_rgba(44,47,49,0.08)] flex items-center justify-between">
+          <div>
+            <p class="text-xs text-on-surface-variant mb-0.5">Total SKU</p>
+            <h3 class="text-xl font-bold text-on-surface">1,284</h3>
+          </div>
+          <span class="text-xs font-semibold text-green-600 bg-green-50 px-2 py-0.5 rounded-md">+12.5%</span>
+        </div>
+        <div class="anim anim-2 bg-surface-container-lowest rounded-xl px-5 py-4 shadow-[0_1px_4px_rgba(44,47,49,0.08)] flex items-center justify-between">
+          <div>
+            <p class="text-xs text-on-surface-variant mb-0.5">Stok Menipis</p>
+            <h3 class="text-xl font-bold text-error">24</h3>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+        </div>
+        <div class="anim anim-3 bg-surface-container-lowest rounded-xl px-5 py-4 shadow-[0_1px_4px_rgba(44,47,49,0.08)] flex items-center justify-between">
+          <div>
+            <p class="text-xs text-on-surface-variant mb-0.5">Pending Approval</p>
+            <h3 class="text-xl font-bold text-on-surface">3</h3>
+          </div>
+          <span class="text-xs font-semibold text-yellow-700 bg-yellow-50 px-2 py-0.5 rounded-md">3 item</span>
+        </div>
+        <div class="anim anim-4 bg-surface-container-lowest rounded-xl px-5 py-4 shadow-[0_1px_4px_rgba(44,47,49,0.08)] flex items-center justify-between">
+          <div>
+            <p class="text-xs text-on-surface-variant mb-0.5">Antrian Gudang</p>
+            <h3 class="text-xl font-bold text-on-surface">5</h3>
+          </div>
+          <span class="text-xs font-semibold text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-md">Pending</span>
+        </div>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="grid grid-cols-12 gap-6">
+
+        <!-- Chart -->
+        <div class="col-span-12 md:col-span-8 anim anim-2 bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-slate-200">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h3 class="font-extrabold text-on-surface">Pergerakan Stok — 30 Hari</h3>
+              <p class="text-xs text-on-surface-variant mt-0.5">Pemasukan vs Pengeluaran</p>
+            </div>
+            <select class="text-xs font-bold bg-surface-container-low rounded-xl px-3 py-2 text-on-surface border-none">
+              <option>30 Hari Terakhir</option>
+              <option>7 Hari Terakhir</option>
+            </select>
+          </div>
+          <canvas id="stockChart" height="100"></canvas>
+        </div>
+
+        <!-- Inbox Ringkasan -->
+        <div class="col-span-12 md:col-span-4 anim anim-3 bg-surface-container-lowest rounded-xl shadow-[0_1px_4px_rgba(44,47,49,0.08)] overflow-hidden">
+          <div class="flex items-center justify-between px-5 py-4 border-b" style="border-color:rgba(217,221,224,0.5)">
+            <div class="flex items-center gap-2">
+              <h3 class="text-sm font-semibold text-on-surface">Inbox</h3>
+              <span class="text-[10px] font-bold text-white bg-orange-600 px-1.5 py-0.5 rounded">3</span>
+            </div>
+            <a href="approval-inbox.html" class="text-xs text-on-surface-variant hover:text-on-surface transition-colors">Lihat semua →</a>
+          </div>
+          <div class="divide-y" style="border-color:rgba(217,221,224,0.4)">
+            <a href="approval-inbox.html" class="flex items-start gap-3 px-5 py-3.5 hover:bg-surface transition-colors">
+              <span class="w-1 h-1 rounded-full bg-yellow-500 mt-2 flex-shrink-0"></span>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-semibold text-on-surface font-mono truncate">PGJ-MSK/KTR1/2026/00042</p>
+                <p class="text-[11px] text-on-surface-variant mt-0.5">Pemasukan · 4 item · Budi S. · 2j lalu</p>
+              </div>
+            </a>
+            <a href="approval-inbox.html" class="flex items-start gap-3 px-5 py-3.5 hover:bg-surface transition-colors">
+              <span class="w-1 h-1 rounded-full bg-yellow-500 mt-2 flex-shrink-0"></span>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-semibold text-on-surface font-mono truncate">PGJ-KLR/KTR1/2026/00041</p>
+                <p class="text-[11px] text-on-surface-variant mt-0.5">Pengeluaran · 2 item · Sari A. · 5j lalu</p>
+              </div>
+            </a>
+            <a href="approval-inbox.html" class="flex items-start gap-3 px-5 py-3.5 hover:bg-surface transition-colors">
+              <span class="w-1 h-1 rounded-full bg-yellow-500 mt-2 flex-shrink-0"></span>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-semibold text-on-surface font-mono truncate">PGJ-MSK/KTR1/2026/00040</p>
+                <p class="text-[11px] text-on-surface-variant mt-0.5">Pemasukan · 7 item · Citra M. · 1h lalu</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="col-span-12 md:col-span-6 anim anim-3 bg-surface-container-lowest rounded-xl shadow-[0_1px_4px_rgba(44,47,49,0.08)] overflow-hidden">
+          <div class="flex items-center justify-between px-5 py-4 border-b" style="border-color:rgba(217,221,224,0.5)">
+            <h3 class="text-sm font-semibold text-on-surface">Aktivitas Terbaru</h3>
+            <a href="pengajuan-riwayat.html" class="text-xs text-on-surface-variant hover:text-on-surface transition-colors">Riwayat →</a>
+          </div>
+          <div class="divide-y" style="border-color:rgba(217,221,224,0.4)">
+            <div class="flex items-center gap-3 px-5 py-3 hover:bg-surface transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0"></span>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-medium text-on-surface">PGJ-MSK/00039 disetujui — siap eksekusi gudang</p>
+              </div>
+              <span class="text-[10px] text-on-surface-variant flex-shrink-0">08:24</span>
+            </div>
+            <div class="flex items-center gap-3 px-5 py-3 hover:bg-surface transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant flex-shrink-0"></span>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-medium text-on-surface">Eksekusi selesai — 120u Semen Tiga Roda masuk stok</p>
+              </div>
+              <span class="text-[10px] text-on-surface-variant flex-shrink-0">Kemarin</span>
+            </div>
+            <div class="flex items-center gap-3 px-5 py-3 hover:bg-surface transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-error flex-shrink-0"></span>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-medium text-on-surface">PGJ-KLR/00037 ditolak — stok masih mencukupi</p>
+              </div>
+              <span class="text-[10px] text-on-surface-variant flex-shrink-0">Kemarin</span>
+            </div>
+            <div class="flex items-center gap-3 px-5 py-3 hover:bg-surface transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-yellow-500 flex-shrink-0"></span>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-medium text-on-surface">Peringatan — 4 barang di bawah stok minimum</p>
+              </div>
+              <span class="text-[10px] text-on-surface-variant flex-shrink-0">Kemarin</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Barang Kritis -->
+        <div class="col-span-12 md:col-span-6 anim anim-4 bg-surface-container-lowest rounded-xl shadow-[0_1px_4px_rgba(44,47,49,0.08)] overflow-hidden">
+          <div class="flex items-center justify-between px-5 py-4 border-b" style="border-color:rgba(217,221,224,0.5)">
+            <h3 class="text-sm font-semibold text-on-surface">Stok Kritis</h3>
+            <a href="stok-dashboard.html" class="text-xs text-on-surface-variant hover:text-on-surface transition-colors">Lihat detail →</a>
+          </div>
+          <table class="w-full">
+            <thead><tr class="border-b" style="border-color:rgba(217,221,224,0.4)">
+              <th class="px-5 py-2.5 text-left text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Barang</th>
+              <th class="px-5 py-2.5 text-right text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Stok</th>
+              <th class="px-5 py-2.5 text-right text-[10px] font-semibold text-on-surface-variant uppercase tracking-wider">Min.</th>
+              <th class="px-5 py-2.5 w-28"></th>
+            </tr></thead>
+            <tbody class="divide-y" style="border-color:rgba(217,221,224,0.3)">
+              <tr class="hover:bg-surface transition-colors">
+                <td class="px-5 py-3 text-xs font-medium text-on-surface">Semen Holcim 50kg</td>
+                <td class="px-5 py-3 text-xs font-bold text-error text-right">8 sak</td>
+                <td class="px-5 py-3 text-xs text-on-surface-variant text-right">50</td>
+                <td class="px-5 py-3"><div class="w-full h-1 bg-red-100 rounded-full"><div class="h-full bg-error rounded-full" style="width:8%"></div></div></td>
+              </tr>
+              <tr class="hover:bg-surface transition-colors">
+                <td class="px-5 py-3 text-xs font-medium text-on-surface">Sabun Pembersih Lantai</td>
+                <td class="px-5 py-3 text-xs font-bold text-yellow-700 text-right">22 pcs</td>
+                <td class="px-5 py-3 text-xs text-on-surface-variant text-right">30</td>
+                <td class="px-5 py-3"><div class="w-full h-1 bg-yellow-100 rounded-full"><div class="h-full bg-yellow-500 rounded-full" style="width:22%"></div></div></td>
+              </tr>
+              <tr class="hover:bg-surface transition-colors">
+                <td class="px-5 py-3 text-xs font-medium text-on-surface">Kabel NYM 2.5mm</td>
+                <td class="px-5 py-3 text-xs font-bold text-error text-right">0 roll</td>
+                <td class="px-5 py-3 text-xs text-on-surface-variant text-right">10</td>
+                <td class="px-5 py-3"><div class="w-full h-1 bg-red-100 rounded-full"><div class="h-full bg-error rounded-full" style="width:0%"></div></div></td>
+              </tr>
+              <tr class="hover:bg-surface transition-colors">
+                <td class="px-5 py-3 text-xs font-medium text-on-surface">Tinta Printer Canon</td>
+                <td class="px-5 py-3 text-xs font-bold text-yellow-700 text-right">18 pcs</td>
+                <td class="px-5 py-3 text-xs text-on-surface-variant text-right">20</td>
+                <td class="px-5 py-3"><div class="w-full h-1 bg-yellow-100 rounded-full"><div class="h-full bg-yellow-500 rounded-full" style="width:18%"></div></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const ctx = document.getElementById('stockChart').getContext('2d');
+    const labels = Array.from({length: 30}, (_, i) => {
+      const d = new Date(); d.setDate(d.getDate() - (29 - i));
+      return d.getDate() + '/' + (d.getMonth()+1);
+    });
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Pemasukan',
+            data: [12,18,8,22,15,30,25,18,12,20,28,35,22,18,14,20,25,30,18,22,28,32,20,15,18,24,30,25,20,28],
+            borderColor: '#9c3f00',
+            backgroundColor: 'rgba(156,63,0,0.08)',
+            borderWidth: 2.5, fill: true, tension: 0.4, pointRadius: 0, pointHoverRadius: 5
+          },
+          {
+            label: 'Pengeluaran',
+            data: [8,12,15,10,18,12,20,15,10,14,18,22,18,12,10,15,18,22,12,16,20,18,14,10,12,18,22,18,14,20],
+            borderColor: '#b02500',
+            backgroundColor: 'rgba(176,37,0,0.05)',
+            borderWidth: 2.5, fill: true, tension: 0.4, pointRadius: 0, pointHoverRadius: 5
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: true, position: 'top', labels: { font: { family: 'Plus Jakarta Sans', size: 11, weight: '700' }, boxWidth: 12, padding: 16 } }, tooltip: { mode: 'index', intersect: false } },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { family: 'Plus Jakarta Sans', size: 10 }, color: '#595c5e', maxTicksLimit: 10 } },
+          y: { grid: { color: '#eef1f3' }, ticks: { font: { family: 'Plus Jakarta Sans', size: 10 }, color: '#595c5e' }, beginAtZero: true }
+        },
+        interaction: { mode: 'nearest', axis: 'x', intersect: false }
+      }
+    });
+  </script>
+</body>
+</html>
+
+
