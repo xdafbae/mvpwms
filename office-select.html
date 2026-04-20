@@ -3,209 +3,121 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>StokFlow | Select Your Workspace</title>
+  <title>StokFlow | Pilih Kantor</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            "brand": "#e25822", // A vibrant orange-red resembling the design
-            "brand-light": "#fff5f2",
-            "gray-bg": "#f9fafb",
+            brand: "#e25822",
+            "brand-soft": "#fff4ee"
           },
-          fontFamily: { sans: ["Plus Jakarta Sans", "sans-serif"] }
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "sans-serif"]
+          }
         }
       }
     }
   </script>
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f6f8fb; }
-    .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background: #f7f8fa;
+    }
   </style>
 </head>
-<body class="text-gray-900 min-h-screen pb-16">
-
-  <!-- Navigation -->
-  <nav class="w-full bg-white h-16 flex justify-between items-center px-8 border-b border-gray-100">
-    <div class="flex items-center space-x-10">
-      <div class="text-brand font-extrabold text-xl tracking-tight">StokFlow</div>
-      <div class="hidden md:flex items-center space-x-6 text-sm font-semibold">
-        <a href="#" class="text-gray-900 border-b-2 border-brand py-5">HQ Office</a>
-        <a href="#" class="text-gray-400 hover:text-gray-700 py-5">North Branch</a>
-        <a href="#" class="text-gray-400 hover:text-gray-700 py-5">West Warehouse</a>
-      </div>
-    </div>
-    <div class="flex items-center space-x-5">
-      <button class="text-gray-500 hover:text-gray-800 transition-colors">
-        <span class="material-symbols-outlined text-[20px]">notifications</span>
-      </button>
-      <button class="text-gray-500 hover:text-gray-800 transition-colors">
-        <span class="material-symbols-outlined text-[20px]">settings</span>
-      </button>
-      <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center focus:outline-none cursor-pointer">
-        <span class="material-symbols-outlined text-white text-[16px]">person</span>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Main Content -->
-  <main class="max-w-6xl mx-auto px-6 pt-12">
-    
-    <!-- Header Page -->
-    <div class="mb-10 max-w-2xl">
-      <p class="text-brand font-bold text-[10px] uppercase tracking-[0.15em] mb-3">Deployment Hub</p>
-      <h1 class="text-5xl font-extrabold tracking-tight mb-4 text-gray-900">Select Your Workspace</h1>
-      <p class="text-gray-500 text-[15px] leading-relaxed max-w-lg">
-        Choose an office location to manage inventory levels, track incoming
-        shipments, and sync regional data to the master StokFlow ledger.
-      </p>
-    </div>
-
-    <!-- Bento Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      
-      <!-- Card 1: Jakarta (Large) -->
-      <a href="dashboard.html" class="md:col-span-2 bg-white rounded-2xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-gray-100 flex relative group cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-shadow">
-        <!-- Content Left -->
-        <div class="w-full md:w-[60%] p-8 z-10 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center space-x-1.5 mb-4">
-              <span class="w-1.5 h-1.5 rounded-full bg-brand"></span>
-              <span class="text-brand font-bold text-xs uppercase tracking-wide">Active Hub</span>
-            </div>
-            <h2 class="text-3xl font-bold mb-3 text-gray-900">Jakarta</h2>
-            <p class="text-gray-500 text-sm leading-relaxed mb-6 max-w-xs">
-              Central Business District, Sudirman Tower Lt. 24. Main distribution node for Southeast Asia operations.
-            </p>
-          </div>
-          <div class="flex space-x-3 mt-8">
-            <div class="bg-gray-100 rounded-lg px-4 py-2">
-              <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-0.5">Capacity</p>
-              <p class="font-extrabold text-gray-900 text-sm">92%</p>
-            </div>
-            <div class="bg-gray-100 rounded-lg px-4 py-2">
-              <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-0.5">Staff</p>
-              <p class="font-extrabold text-gray-900 text-sm">148</p>
-            </div>
-          </div>
-        </div>
-        <!-- Image Right -->
-        <div class="hidden md:block absolute top-0 right-0 w-[55%] h-full">
-          <div class="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent w-full z-10"></div>
-          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" alt="Jakarta Office" class="w-full h-full object-cover"/>
-        </div>
+<body class="min-h-screen text-slate-900">
+  <div class="mx-auto flex min-h-screen max-w-5xl flex-col px-5 py-8 sm:px-6 lg:px-8">
+    <header class="mb-10 flex items-center justify-between">
+      <a href="#" class="text-xl font-extrabold tracking-tight text-brand">StokFlow</a>
+      <a href="dashboard.html" class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-brand hover:text-brand">
+        Masuk Dashboard
       </a>
+    </header>
 
-      <!-- Card 2: Surabaya -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-gray-100 flex flex-col">
-        <div class="h-44 w-full relative">
-           <img src="https://images.unsplash.com/photo-1586528116311-ad8ed7c663e0?auto=format&fit=crop&q=80&w=600" alt="Surabaya Warehouse" class="w-full h-full object-cover"/>
-        </div>
-        <div class="p-6 flex flex-col flex-1 justify-between">
-          <div>
-            <h2 class="text-2xl font-bold mb-2 text-gray-900">Surabaya</h2>
-            <p class="text-gray-500 text-sm leading-relaxed mb-6">
-              East Java Logistics Center. Focused on manufacturing and bulk storage.
-            </p>
-          </div>
-          <a href="dashboard.html" class="w-full block text-center bg-brand text-white py-3 rounded-lg font-semibold text-sm hover:bg-orange-700 transition-colors">
-            Open Branch &rarr;
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 3: Bandung -->
-      <a href="dashboard.html" class="bg-white rounded-2xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-gray-100 flex flex-col cursor-pointer group hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-shadow">
-        <div class="h-40 w-full">
-           <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=600" alt="Bandung Building" class="w-full h-full object-cover"/>
-        </div>
-        <div class="p-6 flex flex-col flex-1 justify-between">
-          <div>
-            <h2 class="text-xl font-bold mb-2 text-gray-900">Bandung</h2>
-            <p class="text-gray-500 text-[13px] leading-relaxed mb-6">
-              Tech & Design Hub. Managing premium electronics and delicate components.
-            </p>
-          </div>
-          <div class="flex items-center space-x-1.5 text-brand">
-            <span class="material-symbols-outlined text-[16px]">cloud_done</span>
-            <span class="text-xs font-bold">Synced 2m ago</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Card 4: Medan -->
-      <a href="dashboard.html" class="bg-white rounded-2xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-gray-100 flex flex-col cursor-pointer group hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-shadow">
-        <div class="h-40 w-full">
-           <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80&w=600" alt="Medan Building Night" class="w-full h-full object-cover"/>
-        </div>
-        <div class="p-6 flex flex-col flex-1 justify-between">
-          <div>
-             <h2 class="text-xl font-bold mb-2 text-gray-900">Medan</h2>
-             <p class="text-gray-500 text-[13px] leading-relaxed mb-6">
-               North Sumatra Gateway. Specializing in agriculture and export inventory.
-             </p>
-          </div>
-          <div class="flex items-center space-x-1.5 text-gray-500">
-            <span class="material-symbols-outlined text-[16px]">schedule</span>
-            <span class="text-xs font-bold">Maintenance in 4h</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Card 5: Add New Branch -->
-      <div class="relative bg-transparent rounded-2xl border-[1.5px] border-dashed border-gray-300 p-8 flex flex-col items-center justify-center text-center cursor-pointer group hover:bg-gray-50/50 transition-colors min-h-[260px]">
-        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 mb-4 group-hover:bg-gray-300 transition-colors">
-          <span class="material-symbols-outlined">storefront</span>
-        </div>
-        <h3 class="font-extrabold text-lg text-gray-900">Add New Branch</h3>
-        <p class="text-[13px] text-gray-500 mt-2 max-w-[200px] leading-relaxed">
-          Provision a new office or warehouse location to the network.
+    <main class="flex-1">
+      <section class="mb-8 max-w-2xl">
+        <p class="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-brand">Pilih Lokasi</p>
+        <h1 class="mb-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Pilih kantor untuk mulai bekerja</h1>
+        <p class="text-sm leading-7 text-slate-500 sm:text-base">
+          Gunakan halaman ini untuk masuk ke cabang yang ingin dikelola. Tampilan dibuat lebih ringkas agar pilihan kantor lebih cepat ditemukan.
         </p>
-        
-        <!-- Floating + button -->
-        <button class="absolute -right-3 -bottom-3 w-12 h-12 bg-brand rounded-full text-white shadow-lg flex items-center justify-center transform group-hover:scale-110 transition-transform">
-          <span class="material-symbols-outlined text-[24px]">add</span>
+      </section>
+
+      <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="dashboard.html" class="rounded-2xl border border-brand/20 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md">
+          <div class="mb-4 inline-flex rounded-full bg-brand-soft px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-brand">
+            Utama
+          </div>
+          <h2 class="mb-2 text-xl font-bold">Jakarta</h2>
+          <p class="mb-5 text-sm leading-6 text-slate-500">
+            Kantor pusat untuk operasional utama dan pemantauan stok seluruh cabang.
+          </p>
+          <div class="flex items-center justify-between text-sm">
+            <span class="font-semibold text-slate-600">148 staff</span>
+            <span class="font-bold text-brand">Buka</span>
+          </div>
+        </a>
+
+        <a href="dashboard.html" class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md">
+          <div class="mb-4 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+            Cabang
+          </div>
+          <h2 class="mb-2 text-xl font-bold">Surabaya</h2>
+          <p class="mb-5 text-sm leading-6 text-slate-500">
+            Pusat logistik Jawa Timur untuk penyimpanan barang dan distribusi regional.
+          </p>
+          <div class="flex items-center justify-between text-sm">
+            <span class="font-semibold text-slate-600">92% kapasitas</span>
+            <span class="font-bold text-brand">Buka</span>
+          </div>
+        </a>
+
+        <a href="dashboard.html" class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md">
+          <div class="mb-4 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+            Cabang
+          </div>
+          <h2 class="mb-2 text-xl font-bold">Bandung</h2>
+          <p class="mb-5 text-sm leading-6 text-slate-500">
+            Fokus pada produk elektronik, barang sensitif, dan kebutuhan tim teknis.
+          </p>
+          <div class="flex items-center justify-between text-sm">
+            <span class="font-semibold text-slate-600">Sinkron 2 menit lalu</span>
+            <span class="font-bold text-brand">Buka</span>
+          </div>
+        </a>
+
+        <a href="dashboard.html" class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md">
+          <div class="mb-4 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+            Cabang
+          </div>
+          <h2 class="mb-2 text-xl font-bold">Medan</h2>
+          <p class="mb-5 text-sm leading-6 text-slate-500">
+            Menangani stok komoditas, distribusi wilayah Sumatra, dan pengiriman ekspor.
+          </p>
+          <div class="flex items-center justify-between text-sm">
+            <span class="font-semibold text-slate-600">Maintenance 4 jam lagi</span>
+            <span class="font-bold text-brand">Buka</span>
+          </div>
+        </a>
+
+        <button class="rounded-2xl border border-dashed border-slate-300 bg-white p-6 text-left shadow-sm transition hover:border-brand hover:shadow-md">
+          <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-soft text-lg font-bold text-brand">
+            +
+          </div>
+          <h2 class="mb-2 text-xl font-bold">Tambah Cabang</h2>
+          <p class="text-sm leading-6 text-slate-500">
+            Tambahkan kantor atau gudang baru ke dalam jaringan StokFlow.
+          </p>
         </button>
-      </div>
+      </section>
 
-    </div>
-
-    <!-- Bottom Footer Stats -->
-    <div class="mt-12 bg-[#f2f4f6] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0">
-      <div class="flex items-center flex-col md:flex-row gap-5 text-center md:text-left">
-        <!-- Avatars -->
-        <div class="flex -space-x-2">
-          <img src="https://i.pravatar.cc/100?img=11" alt="Manager 1" class="w-10 h-10 rounded-full border-2 border-[#f2f4f6] object-cover"/>
-          <img src="https://i.pravatar.cc/100?img=12" alt="Manager 2" class="w-10 h-10 rounded-full border-2 border-[#f2f4f6] object-cover"/>
-          <img src="https://i.pravatar.cc/100?img=13" alt="Manager 3" class="w-10 h-10 rounded-full border-2 border-[#f2f4f6] object-cover"/>
-          <div class="w-10 h-10 rounded-full border-2 border-[#f2f4f6] bg-brand text-white flex items-center justify-center text-xs font-extrabold z-10">+12</div>
-        </div>
-        <div>
-          <h4 class="font-extrabold text-[#1f2937] text-sm mb-0.5">Collaborative Ecosystem</h4>
-          <p class="text-xs font-semibold text-gray-400">15 managers currently online across all regions.</p>
-        </div>
-      </div>
-      
-      <div class="flex items-center gap-10 md:gap-14">
-        <div class="text-center">
-          <p class="text-[22px] font-extrabold text-brand">2,481</p>
-          <p class="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mt-1">Active SKU</p>
-        </div>
-        <div class="text-center">
-          <p class="text-[22px] font-extrabold text-brand">42</p>
-          <p class="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mt-1">Vehicles</p>
-        </div>
-        <div class="text-center">
-          <p class="text-[22px] font-extrabold text-brand">99.9%</p>
-          <p class="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mt-1">Uptime</p>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
+      <section class="mt-8 rounded-2xl border border-slate-200 bg-white px-6 py-5 text-sm text-slate-500 shadow-sm">
+        Total 4 lokasi aktif. Pilih salah satu kantor untuk melanjutkan ke dashboard cabang.
+      </section>
+    </main>
+  </div>
 </body>
 </html>
